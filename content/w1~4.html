@@ -142,154 +142,20 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">w8 << <a href='w8.html'>Previous</a> <a href='w13.html'>Next</a> >> w13<br /><h1>w12</h1>
-<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
-#include &lt;gd.h&gt;
-#include &lt;math.h&gt;
-
-int main() {
-    int width = 800;
-    int height = 600;
-
-    gdImagePtr img = gdImageCreateTrueColor(width, height);
-    gdImageAlphaBlending(img, 0);
-
-    FILE *outputFile = fopen("hellogd.png", "wb");
-    if (outputFile == NULL) {
-
-fprintf(stderr, "Error opening the output file.\n");
-
-return 1;
-    }
-
-    int red = gdImageColorAllocate(img, 255, 0, 0);
-    int blue = gdImageColorAllocate(img, 0, 0, 255);
-    int black = gdImageColorAllocate(img, 0, 0, 0);
-    int white = gdImageColorAllocate(img, 255, 255, 255);
-    // 長方形塗色
-    gdImageFilledRectangle(img, 0, 0, width, height, white);
-    gdImageFilledRectangle(img, 0, 0, (int)width/4, (int)height/4, blue);
-    // 橢圓形塗色
-    gdImageFilledEllipse(img, (int)width*3/4, (int)height/4, (int)width/4, (int)width/4, red);
-    // 橢圓形畫線
-    gdImageEllipse(img, (int)width*3/4, (int)height*3/4, (int)width/4, (int)width/4, red);
-    // 畫直線
-    gdImageLine(img, (int)width/2, (int)height/2, (int)width/2, (int)height/2 + 100, blue);
-
-    // 多邊形畫線
-    gdPoint points[4];
-    points[0].x = (int)width/4;
-    points[0].y = (int)height*3/4;
-    points[1].x = points[0].x + 100;
-    points[1].y = points[0].y;
-    points[2].x = points[1].x;
-    points[2].y = points[1].y + 100;
-    points[3].x = points[2].x - 100;
-    points[3].y = points[2].y;
-    gdImagePolygon(img, points, 4, black);
-
-    // 多邊形塗色
-    gdPoint points2[4];
-    points2[0].x = (int)width/3;
-    points2[0].y = (int)height/2;
-    points2[1].x = points2[0].x + 100;
-    points2[1].y = points2[0].y;
-    points2[2].x = points2[1].x;
-    points2[2].y = points2[1].y + 100;
-    points2[3].x = points2[2].x - 150;
-    points2[3].y = points2[2].y;
-    gdImageFilledPolygon(img, points2, 4, red);
-
-    gdImagePngEx(img, outputFile, 9);
-    fclose(outputFile);
-    gdImageDestroy(img);
-    return 0;
-}</pre>
-<p><img alt="" height="300" src="./../images/hellogd.png" width="400"/></p>
-<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
-#include &lt;gd.h&gt;
-#include &lt;math.h&gt;
-
-// Declare the rotation function
-void rotateFilledPolygon(int x_orig, int y_orig, double rotation_ang, gdPoint *points, int num_points) {
-    int i;
-    double angle_rad = rotation_ang * M_PI / 180.0;
-
-    for (i = 0; i &lt; num_points; i++) {
-        int x = points[i].x - x_orig;
-        int y = points[i].y - y_orig;
-
-        points[i].x = x_orig + (int)(x * cos(angle_rad) - y * sin(angle_rad));
-        points[i].y = y_orig + (int)(x * sin(angle_rad) + y * cos(angle_rad));
-    }
-}
-
-int main() {
-    int width = 800;
-    int height = 600;
-
-    gdImagePtr img = gdImageCreateTrueColor(width, height);
-    gdImageAlphaBlending(img, 0);
-
-    FILE *outputFile = fopen("./../images/hellogd2.png", "wb");
-    if (outputFile == NULL) {
-        fprintf(stderr, "Error opening the output file.\n");
-        return 1;
-    }
-
-    int red = gdImageColorAllocate(img, 255, 0, 0);
-    int blue = gdImageColorAllocate(img, 0, 0, 255);
-    int black = gdImageColorAllocate(img, 0, 0, 0);
-    int white = gdImageColorAllocate(img, 255, 255, 255);
-
-    gdImageFilledRectangle(img, 0, 0, width, height, white);
-    gdImageFilledRectangle(img, 0, 0, (int)width / 4, (int)height / 4, blue);
-
-    gdImageFilledEllipse(img, (int)width * 3 / 4, (int)height / 4, (int)width / 4, (int)width / 4, red);
-    gdImageEllipse(img, (int)width * 3 / 4, (int)height * 3 / 4, (int)width / 4, (int)width / 4, red);
-    gdImageLine(img, (int)width / 2, (int)height / 2, (int)width / 2, (int)height / 2 + 100, blue);
-
-    gdPoint points[4];
-    points[0].x = (int)width / 4;
-    points[0].y = (int)height * 3 / 4;
-    points[1].x = points[0].x + 100;
-    points[1].y = points[0].y;
-    points[2].x = points[1].x;
-    points[2].y = points[1].y + 100;
-    points[3].x = points[2].x - 100;
-    points[3].y = points[2].y;
-
-    // Call the rotation function multiple times
-    for (int i = 0; i &lt; 4; i++) {
-        rotateFilledPolygon((int)width / 4 + 50, (int)height * 3 / 4 + 50, 30.0, points, 4);
-        gdImagePolygon(img, points, 4, black);
-    }
-
-    gdPoint points2[4];
-    points2[0].x = (int)width / 3;
-    points2[0].y = (int)height / 2;
-    points2[1].x = points2[0].x + 100;
-    points2[1].y = points2[0].y;
-    points2[2].x = points2[1].x;
-    points2[2].y = points2[1].y + 100;
-    points2[3].x = points2[2].x - 150;
-    points2[3].y = points2[2].y;
-
-    // Call the rotation function multiple times
-    for (int i = 0; i &lt; 12; i++) {
-        //rotateFilledPolygon((int)width / 3 + 50, (int)height / 2 + 50, 30.0, points2, 4);
-        rotateFilledPolygon(500, 200, 30.0, points2, 4);
-        gdImageFilledPolygon(img, points2, 4, red);
-    }
-
-    gdImagePngEx(img, outputFile, 9);
-    fclose(outputFile);
-    gdImageDestroy(img);
-
-    return 0;
-}
-</pre>
-<p><img alt="" height="300" src="./../images/hellogd2.png" width="400"/></p><br />w8 << <a href='w8.html'>Previous</a> <a href='w13.html'>Next</a> >> w13</div>
+    <div id="tipue_search_content">About << <a href='About.html'>Previous</a> <a href='w2.html'>Next</a> >> w2<br /><h1>w1~4</h1>
+<p><strong>建立帳號與網站</strong></p>
+<p>利用已經帶有 Brython 執行環境的倉儲, 在設定學員 Github Classroom 首次作業時, 即經由 template 置入, 因此學員只要:</p>
+<p>利用學校 email 帳號, 建立 Github 帳號, 以英文姓名縮寫加上一組數字, 選擇最短帳號名稱 例如: jfk40723199, jfk 為其自選的姓名縮寫, 而隨後則加上各自的學號.</p>
+<p>擁有 Github 帳號後, 即可透過 Github Classroom assignment 連結取得作業倉儲, 自行在倉儲中設定 Github Pages 後, 即可啟用作業網站 (以下<span> </span><span>所謂<span>網站均指靜態網站</span><span> </span></span>, 而用來編輯網站內容的<span>動態網站, 則統稱為網際內容編輯器</span>, 使用動態網站的目的在編輯靜態網站的內容). 網站內容經過編輯之後, 必須建立新的網站內容 (使用 generate_pages), 然後將新的網站內容更新到對應的 Github 倉儲中 (稱為改版, 其過程經歷 git add, git commit 與 git push 等階段).</p>
+<p>git 為分散式版次管理系統工具.</p>
+<p>git add</p>
+<p>git commit</p>
+<p>git push</p>
+<p>採用 Github Classroom 建立作業倉儲的問題:</p>
+<p>2023/09/26 在 1a w3 課程進行到建立各學員 site 作業時發現, 將 Replit 導入 Github 倉儲的流程中, 所產生的系統間權限設定, 必須由 Github Classroom 管理帳號 (以 cp2023 為例, 附屬在 mdecp2023 帳號下), 針對各用戶所提出的個別 Replit 權限 requests (以 site-scrum-1 倉儲為例, 只能透過 Replit 提出控管 mdecp2023/site-scrum-1 倉儲的權限)<span> </span><span>逐一進行設定</span>.</p>
+<p><img alt="" class="add_border" height="310" src="https://mde.tw/cpnote/images/mdecp2023_replit_requests.png" width="400"/></p>
+<p>(上圖顯示共有三名用戶針對 mdecp2023 帳號下的 Github Classroom 倉儲提出 Replit 連線要求, 其中只有最上方用戶的 request 取得 mdecp2023/site-scrum-1 倉儲的維護權限, 其餘兩則 requests 則仍處於待審核階段. 意即若要讓各用戶整合 Replit,<span> </span><span>每一個 Github Classroom 作業, 管理者都必須手動處理超過兩百則的 requests</span>)</p>
+<p>為去除管理者的手動設定負擔, 決定 2023 cp 與 cad 等課程將放棄使用 Github Classroom. 改為由各學員自行針對課程建立用來評分的課程倉儲與網站 (cp 課程建立 cp2023 倉儲, cad 課程則建立 cad2023 倉儲), 直接附屬在學員的 Github 帳號下, 後續的 submodule 設定與倉儲協同權限則統一由各學員自行負責</p><br />About << <a href='About.html'>Previous</a> <a href='w2.html'>Next</a> >> w2</div>
         
     <!-- footer -->
       <div class="container">

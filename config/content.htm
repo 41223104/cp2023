@@ -4,7 +4,8 @@
 <p>分組：</p>
 <p><a href="https://github.com/41023101/cp2023_ag1"></a>        倉儲：<a href="https://github.com/41023101/cp2023_ag1">https://github.com/41023101/cp2023_ag1</a><br/>        網站：<a href="https://41023101.github.io/cp2023_ag1/content/index.html"></a><a href="https://41023101.github.io/cp2023_ag1/content/index.html"></a><a href="https://41023101.github.io/cp2023_ag1/content/index.html">https://41023101.github.io/cp2023_ag1/content/index.html</a></p>
 <p></p>
-<h1>w1~4</h1>
+<h1>作業區</h1>
+<h2>w1~4</h2>
 <p><strong>建立帳號與網站</strong></p>
 <p>利用已經帶有 Brython 執行環境的倉儲, 在設定學員 Github Classroom 首次作業時, 即經由 template 置入, 因此學員只要:</p>
 <p>利用學校 email 帳號, 建立 Github 帳號, 以英文姓名縮寫加上一組數字, 選擇最短帳號名稱 例如: jfk40723199, jfk 為其自選的姓名縮寫, 而隨後則加上各自的學號.</p>
@@ -18,7 +19,7 @@
 <p><img alt="" class="add_border" height="310" src="https://mde.tw/cpnote/images/mdecp2023_replit_requests.png" width="400"/></p>
 <p>(上圖顯示共有三名用戶針對 mdecp2023 帳號下的 Github Classroom 倉儲提出 Replit 連線要求, 其中只有最上方用戶的 request 取得 mdecp2023/site-scrum-1 倉儲的維護權限, 其餘兩則 requests 則仍處於待審核階段. 意即若要讓各用戶整合 Replit,<span> </span><span>每一個 Github Classroom 作業, 管理者都必須手動處理超過兩百則的 requests</span>)</p>
 <p>為去除管理者的手動設定負擔, 決定 2023 cp 與 cad 等課程將放棄使用 Github Classroom. 改為由各學員自行針對課程建立用來評分的課程倉儲與網站 (cp 課程建立 cp2023 倉儲, cad 課程則建立 cad2023 倉儲), 直接附屬在學員的 Github 帳號下, 後續的 submodule 設定與倉儲協同權限則統一由各學員自行負責</p>
-<h1>w5</h1>
+<h2>w5</h2>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">// 包含標準輸出入程式庫的標頭文件
 // https://blog.csdn.net/weixin_38468077/article/details/101069365
 // http://www.gnuplot.info/demo/
@@ -63,7 +64,7 @@ int main() {
     return 0;
 }</pre>
 <p><img alt="" height="200" src="/images/gnuplot_ex1.png" width="400"/></p>
-<h1>w6</h1>
+<h2>w6</h2>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">// https://en.wikipedia.org/wiki/Flag_of_the_Republic_of_China
 // 內政部國旗參考資料: https://www.moi.gov.tw/cp.aspx?n=10621
 // cc roc_flag_in_gd.c -lgd -lm to link with gd and math library
@@ -276,7 +277,7 @@ void draw_star(gdImagePtr img, int x, int y, int size, int color, double rotatio
     gdImageFilledPolygon(img, points, 10, color);
 }</pre>
 <p><img alt="" height="211" src="/images/usa_flag.png" width="400"/></p>
-<h1>w7</h1>
+<h2>w7</h2>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
 #include &lt;gd.h&gt;
 #include &lt;math.h&gt;
@@ -923,9 +924,9 @@ if (outputFile == NULL) {
       return 0;
   }</pre>
 <p><img alt="" height="267" src="/images/korea_flag.png" width="400"/></p>
-<h1>w8</h1>
+<h2>w8</h2>
 <h5><span>進行九人一排分組, 期中成績預計送出個人期望成績</span></h5>
-<h1>w9</h1>
+<h2>w9</h2>
 <p>各個專有術語解釋以及用途</p>
 <p>Map: site map 網站所有頁面</p>
 <p>EditA: edit all pages, 使用時機為(1)解決多人共用網站時的衝突, 或(2)刪除特定頁面</p>
@@ -938,14 +939,15 @@ if (outputFile == NULL) {
 <p>FList: file list, 列出位於 downloads 目錄下的檔案</p>
 <p>Logout: 登出</p>
 <p>Convert: 將 config/content.htm 經過分頁程式處理後, 轉為 content 目錄下的超文件</p>
-<h1>w10~w11</h1>
+<h2>w10~w11</h2>
 <p>線上簡報、網誌與多媒體影片製作工具:</p>
 <p><a href="https://leo-editor.github.io/leo-editor/">Leo Editor</a><span> </span>(<a href="https://groups.google.com/g/leo-editor">討論群組</a>) 為大綱管理系統, 可以當作程式開發的 IDE (Integrated Development Environment) 使用, 可用來編輯 reveal.js 簡報檔案中的 html 與 markdown, 也可用來編輯 Pelican 網誌 markdown 與轉檔, 並且在電腦輔助設計與分析過程中, 可以用來解讀 CoppeliaSim XML 格式檔案.</p>
 <p>因為 Python 3.12.0 環境下 Leo Editor 還無法正常透過 pip 安裝, 因此必須手動安裝 PyQt5 之後, 再使用 pip install leo, 所完成的 Python 3.12.0: <a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EYf6RiAqXAFJllAizi_-iZ4BT9ZEn8-bT2V8TVjd9p446Q?e=NSCciC">Python312_leo_664_PyQt5.7z</a><span> </span>(需要下載密碼)</p>
 <p><a href="https://www.debugmode.com/wink.html">Wink</a><span> </span>為操作流程影片製作套件, 可以在電腦操作過程, 儲存關鍵頁面與滑鼠點擊區域後, 加上輔助文字說明後製作成 mp4 影片檔.</p>
 <p><a href="https://github.com/ShareX/ShareX/releases">ShareX</a><span> </span>為螢幕畫面取像或錄影套件, 可以擷取電腦畫面任一區域存為影像檔, 或者結合語音說明與滑鼠操作錄製說明影片.</p>
 <p><a href="https://github.com/obsproject/obs-studio/releases">OBS</a><span> </span>為電腦廣播製作系統, 可以結合各種語音、圖像與影片製作出多元的電腦操作說明影片.</p>
-<p>Wink 與 ShareX 都需要<span> </span><a href="https://ffmpeg.org/download.html#build-windows">ffmpeq.exe</a>.</p><h1>w12</h1>
+<p>Wink 與 ShareX 都需要<span> </span><a href="https://ffmpeg.org/download.html#build-windows">ffmpeq.exe</a>.</p>
+<h2>w12</h2>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
 #include &lt;gd.h&gt;
 #include &lt;math.h&gt;
@@ -1093,7 +1095,7 @@ int main() {
 }
 </pre>
 <p><img alt="" height="300" src="/images/hellogd2.png" width="400"/></p>
-<h1>w13</h1>
+<h2>w13</h2>
 <p>在這堂課中，對於剛進虎尾科大大一生的我相當有難度，這是我完全沒接觸過的領域。不僅僅是了解這些網頁、程式碼、指令如何運用，還有邏輯上頭腦要非常清楚，才能完全理解。目前遇到的難題是，不太懂運行這些程式的目的以及相關術語，有點跟不太上老師的腳步，希望老師可以放慢步調多解釋術語，學生不才，請老師多多包容，我是真心想要好好學習、順利通過這門課不想被當。</p>
 <h1>note</h1>
 <h2>SSH</h2>
@@ -1108,7 +1110,8 @@ int main() {
 <p><span><span><img alt="" height="357" src="/images/2.png" width="400"/></span></span></p>
 <h4><span>點選代理更改設定</span></h4>
 <p><span><img alt="" height="359" src="/images/3.png" width="400"/></span></p>
-<p><span>完成</span></p><h2>puttygen</h2>
+<p><span>完成</span></p>
+<h2>puttygen</h2>
 <p>使用puttygen.exe定位主機位置獲得key(點Generate)</p>
 <p><img alt="" height="288" src="https://41223136.github.io/cp2023/images/puttygen.png" width="400"/></p>
 <p>點選之後並在視窗內移動</p>
@@ -1117,7 +1120,8 @@ int main() {
 <p>再到github帳號setting的ssh and gpg keys新增一把key</p>
 <p>把剛剛複製的key-rsa貼上之後點save private key 即可!</p>
 <p>儲存到<span>tinyc-data-home<span> </span></span>名稱:學號</p>
-<p>將鑰匙儲存在自己的USB當中</p><h1>MSD</h1>
+<p>將鑰匙儲存在自己的USB當中</p>
+<h1>MSD</h1>
 <p><span>Mass-Spring-Damper 是一個典型的物理模型, 由質量-彈簧-阻尼器等三個元件組成, 若將彈簧其拉力與變形量成正比, 若假設阻尼器的阻力大小則與其受力方向的速度成正比, 根據牛頓運動定律, 就可以從物理模型的自由體圖導入系統的運動方程式. 接下來就要利用計算機程式, 解此一系統的微分方程式.</span></p>
 <p><span>euler_gnuplot_msd_ex1.c 程式內容:</span></p>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">// 包含標準輸出入程式庫的標頭文件

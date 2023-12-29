@@ -1059,7 +1059,61 @@ int main() {
 <p>在這堂課中，對於剛進虎尾科大大一生的我相當有難度，這是我完全沒接觸過的領域。不僅僅是了解這些網頁、程式碼、指令如何運用，還有邏輯上頭腦要非常清楚，才能完全理解。目前遇到的難題是，不太懂運行這些程式的目的以及相關術語，有點跟不太上老師的腳步，希望老師可以放慢步調多解釋術語，學生不才，請老師多多包容，我是真心想要好好學習、順利通過這門課不想被當。</p>
 <h1>MSD</h1>
 <p><span>Mass-Spring-Damper 是一個典型的物理模型, 由質量-彈簧-阻尼器等三個元件組成, 若將彈簧其拉力與變形量成正比, 若假設阻尼器的阻力大小則與其受力方向的速度成正比, 根據牛頓運動定律, 就可以從物理模型的自由體圖導入系統的運動方程式. 接下來就要利用計算機程式, 解此一系統的微分方程式.</span></p>
-<p><span>euler_gnuplot_msd_ex1.c 程式內容:</span></p><h1>Brython</h1>
+<p><span>euler_gnuplot_msd_ex1.c 程式內容:</span></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">// 包含標準輸出入程式庫的標頭文件
+#include &lt;stdio.h&gt;
+ 
+// 主函式
+int main() {
+    // Open a file to write displacement and velocity data
+    FILE *outputFile = fopen("motion_data.txt", "w");
+    if (!outputFile) {
+        fprintf(stderr, "Failed to create data file.\n");
+        return 1;
+    }
+ 
+    // Simulate motion for 10 seconds and calculate displacement and velocity, while writing data to the file
+    double x = 0.2;  // Initial displacement
+    double v = 0.0;  // Initial velocity
+    double dt = 0.01; // Time step
+    double t = 0.0;  // Time
+ 
+    while (t &lt;= 10.0) {
+        double acceleration = (-10.0 * x - 0.5 * v) / 1.0; // Modified system parameters here
+        v += acceleration * dt;
+        x += v * dt;
+ 
+        fprintf(outputFile, "%lf %lf %lf\n", t, x, v);
+ 
+        t += dt;
+    }
+ 
+    // Close the data file
+    fclose(outputFile);
+ 
+    // Start a Gnuplot process using popen
+    FILE *gnuplotPipe = popen("gnuplot -persistent", "w");
+    if (!gnuplotPipe) {
+        fprintf(stderr, "Failed to start Gnuplot.\n");
+        return 1;
+    }
+ 
+    // Use Gnuplot plotting commands, specify font and output as PNG
+    fprintf(gnuplotPipe, "set terminal pngcairo enhanced font 'default,10' size 800,400\n");
+    fprintf(gnuplotPipe, "set output './../images/motion_plot.png'\n");
+    fprintf(gnuplotPipe, "set title 'Displacement and Velocity vs. Time'\n");
+    fprintf(gnuplotPipe, "set xlabel 'Time (s)'\n");
+    fprintf(gnuplotPipe, "set ylabel 'Displacement (m)'\n");
+    fprintf(gnuplotPipe, "plot 'motion_data.txt' using 1:2 with lines lw 2 title 'Displacement', \
+                             'motion_data.txt' using 1:3 with lines lw 2 title 'Velocity'\n");
+ 
+    // Close the Gnuplot process
+    fprintf(gnuplotPipe, "exit\n");
+    pclose(gnuplotPipe);
+ 
+    return 0;
+}</pre>
+<p><img alt="" height="200" src="/images/motion_plot.png" width="400"/></p><h1>Brython</h1>
 <p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">https://en.wikipedia.org/wiki/Python_(programming_language)</a></p>
 <h4>Examples:</h4>
 <p style="padding-left: 30px;"><a href="https://gist.github.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d">https://gist.github.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d</a></p>

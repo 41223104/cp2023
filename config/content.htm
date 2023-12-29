@@ -1095,7 +1095,29 @@ int main() {
 <p><img alt="" height="300" src="/images/hellogd2.png" width="400"/></p>
 <h1>w13</h1>
 <p>在這堂課中，對於剛進虎尾科大大一生的我相當有難度，這是我完全沒接觸過的領域。不僅僅是了解這些網頁、程式碼、指令如何運用，還有邏輯上頭腦要非常清楚，才能完全理解。目前遇到的難題是，不太懂運行這些程式的目的以及相關術語，有點跟不太上老師的腳步，希望老師可以放慢步調多解釋術語，學生不才，請老師多多包容，我是真心想要好好學習、順利通過這門課不想被當。</p>
-<h1>MSD</h1>
+<h1>note</h1>
+<h2>SSH</h2>
+<p><span>在putty資料夾內開啟puttygen.exe做一把金鑰匙</span></p>
+<p><span><span>將key儲存在github帳號內(開啟設定點選ssh)</span></span></p>
+<p><span><span>返回puttygen.exe按儲存私鑰即可</span></span></p>
+<p><span><span>然後再打開膩子</span></span></p>
+<p><span><span>主機名稱輸入github.com</span></span></p>
+<p><span><span>儲存的課程輸入自己的學號</span></span></p>
+<p><span><span><img alt="" height="366" src="/images/1.png" width="400"/></span></span></p>
+<p><span><span>點選代理更改設定</span></span></p>
+<p><span><span><img alt="" height="357" src="/images/2.png" width="400"/></span></span></p>
+<h4><span>點選代理更改設定</span></h4>
+<p><span><img alt="" height="359" src="/images/3.png" width="400"/></span></p>
+<p><span>完成</span></p><h2>puttygen</h2>
+<p>使用puttygen.exe定位主機位置獲得key(點Generate)</p>
+<p><img alt="" height="288" src="https://41223136.github.io/cp2023/images/puttygen.png" width="400"/></p>
+<p>點選之後並在視窗內移動</p>
+<p><img alt="" height="288" src="https://41223136.github.io/cp2023/images/puttygen1.png" width="400"/></p>
+<p>複製ssh-rsa的內容<span>全部</span></p>
+<p>再到github帳號setting的ssh and gpg keys新增一把key</p>
+<p>把剛剛複製的key-rsa貼上之後點save private key 即可!</p>
+<p>儲存到<span>tinyc-data-home<span> </span></span>名稱:學號</p>
+<p>將鑰匙儲存在自己的USB當中</p><h1>MSD</h1>
 <p><span>Mass-Spring-Damper 是一個典型的物理模型, 由質量-彈簧-阻尼器等三個元件組成, 若將彈簧其拉力與變形量成正比, 若假設阻尼器的阻力大小則與其受力方向的速度成正比, 根據牛頓運動定律, 就可以從物理模型的自由體圖導入系統的運動方程式. 接下來就要利用計算機程式, 解此一系統的微分方程式.</span></p>
 <p><span>euler_gnuplot_msd_ex1.c 程式內容:</span></p>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">// 包含標準輸出入程式庫的標頭文件
@@ -1152,20 +1174,6 @@ int main() {
     return 0;
 }</pre>
 <p><img alt="" height="200" src="/images/motion_plot.png" width="400"/></p>
-<h1>note</h1>
-<p>下載putty</p>
-<p>在putty資料夾內開啟puttygen.exe做一把金鑰匙</p>
-<p>將key儲存在github帳號內(開啟設定點選ssh)</p>
-<p>回到puttygen.exe按save private key即可</p>
-<p>接著再開啟putty</p>
-<p>Host Name輸入github.com</p>
-<p>Saved Sessions輸入自己的學號</p>
-<p><img caption="false" height="366" src="/images/1.png" width="400"/></p>
-<p><span>點選proxy改設定</span></p>
-<p><span><img alt="" height="357" src="/images/2.png" width="400"/></span></p>
-<p><span>再點選ssh內的Auth裡面Credentials</span></p>
-<p><span><img alt="" height="359" src="/images/3.png" width="400"/></span></p>
-<p><span>完成</span></p>
 <h1>Brython</h1>
 <p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">https://en.wikipedia.org/wiki/Python_(programming_language)</a></p>
 <h4>Examples:</h4>

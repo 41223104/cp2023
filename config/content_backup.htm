@@ -2,7 +2,8 @@
 <p><a href="https://github.com/mdecycu/cmsite"> https://github.com/mdecycu/cmsite</a></p>
 <h1>w4</h1>
 <p>建立個人考試帳號、cp2023個人倉儲</p>
-<p><span>同時登入 Github 與 Replit 的情況下, 將 Replit 帳號 connect 至 Github 帳號</span></p><h1>w5</h1>
+<p><span>同時登入 Github 與 Replit 的情況下, 將 Replit 帳號 connect 至 Github 帳號</span></p>
+<h1>w5</h1>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">// 包含標準輸出入程式庫的標頭文件
 // https://blog.csdn.net/weixin_38468077/article/details/101069365
 // http://www.gnuplot.info/demo/
@@ -261,10 +262,215 @@ void draw_star(gdImagePtr img, int x, int y, int size, int color, double rotatio
 }</pre>
 <p><img alt="" height="211" src="/images/usa_flag.png" width="400"/></p>
 <h1>w7</h1>
-<p><span>進行九人一排分組, 期中成績預計送出個人期望成績</span></p>
-<h1>w8</h1><h1>w9</h1>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+#include &lt;gd.h&gt;
+#include &lt;math.h&gt;
+  
+void draw_japan_flag(gdImagePtr img);
+void draw_red_sun(gdImagePtr img, int x, int y, int size, int color);
+  
+int main() {
+    int originalWidth = 1200;
+    int originalHeight = (int)(originalWidth * 2.0 / 3.0);
+    gdImagePtr img = gdImageCreateTrueColor(originalWidth, originalHeight);
+    gdImageAlphaBlending(img, 0);
+  
+    draw_japan_flag(img);
+  
+    // 新的宽度和高度以适应 "images" 文件夹
+    int newWidth = 600;
+    int newHeight = (int)(newWidth * 2.0 / 3.0);
+  
+    // 创建新图像并进行缩放
+    gdImagePtr resizedImage = gdImageCreateTrueColor(newWidth, newHeight);
+    gdImageAlphaBlending(resizedImage, 0);
+    gdImageCopyResampled(resizedImage, img, 0, 0, 0, 0, newWidth, newHeight, originalWidth, originalHeight);
+  
+  FILE *outputFile = fopen("./../images/japan_flag.png", "wb");
+    if (outputFile == NULL) {
+        fprintf(stderr, "Error opening the output file.\n");
+        return 1;
+    }
+    gdImagePng(resizedImage, outputFile);
+    fclose(outputFile);
+    gdImageDestroy(img);
+    gdImageDestroy(resizedImage);
+  
+    return 0;
+}
+  
+void draw_japan_flag(gdImagePtr img) {
+    int width = gdImageSX(img);
+    int height = gdImageSY(img);
+  
+    // 创建一个白色背景
+    int white = gdImageColorAllocate(img, 255, 255, 255);
+    gdImageFilledRectangle(img, 0, 0, width - 1, height - 1, white);
+  
+    // 绘制红色圆圈（太阳）
+    int red = gdImageColorAllocate(img, 255, 0, 0);
+    int center_x = width / 2;
+    int center_y = height / 2;
+    int radius = (int)((width * 2) / 3);
+    draw_red_sun(img, center_x, center_y, radius, red);
+}
+  
+void draw_red_sun(gdImagePtr img, int x, int y, int size, int color) {
+  // 減小 size 的值,例如將他的值減半
+  size = size / 2;
+    gdImageArc(img, x, y, size, size, 0, 360, color);
+    gdImageFillToBorder(img, x, y, color, color);
+}</pre>
+<p><img alt="" height="267" src="/images/japan_flag.png" width="400"/><br/><br/></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+#include &lt;gd.h&gt;
+#include &lt;math.h&gt;
+
+void draw_chinese_flag(gdImagePtr img);
+
+int main() {
+    int width = 300; // 國旗寬度
+    int height = 200; // 國旗高度
+
+    gdImagePtr im = gdImageCreateTrueColor(width, height);
+    gdImageAlphaBlending(im, 0);
+
+    draw_chinese_flag(im);
+
+    FILE *outputFile = fopen("./../images/proc_flag.png", "wb");
+    if (outputFile == NULL) {
+        fprintf(stderr, "打开输出文件时出错。\n");
+        return 1;
+    }
+
+    gdImagePngEx(im, outputFile, 9);
+    fclose(outputFile);
+    gdImageDestroy(im);
+
+    return 0;
+}
+
+// 声明 draw_star 函数
+void draw_star(gdImagePtr img, int x, int y, int size, int color, double rotation_angle);
+
+void draw_chinese_flag(gdImagePtr img) {
+    int width = gdImageSX(img);
+    int height = gdImageSY(img);
+    int red, yellow;
+
+    // 國旗顏色
+    red = gdImageColorAllocate(img, 255, 0, 0); // 紅色背景
+    yellow = gdImageColorAllocate(img, 255, 255, 0); // 黃色星星
+
+    // 畫紅色背景
+    gdImageFilledRectangle(img, 0, 0, width, height, red);
+
+    // 設置星星的大小和位置
+    int star_size = (int)(0.28 * height);
+    int star_x = (int)(0.165 * width);
+    int star_y = (int)(0.265 * height);
+
+    // 畫大星星
+    draw_star(img, star_x, star_y, star_size, yellow, 11.0);
+
+    // 繪製小星星，位置根據實際國旗比例計算
+    double radius = 0.15 * height;
+    double angle = 360 / 7 * M_PI / 179.0;
+    double rotation = -M_PI / 7.5;
+    int cx = (int)(0.32 * width);
+    int cy = (int)(0.27 * height);
+
+    for (int i = -1; i &lt; 3; i++) {
+        int x = (int)(cx + radius * cos(i * angle + rotation));
+        int y = (int)(cy + radius * sin(i * angle + rotation));
+        draw_star(img, x, y, 19, yellow, M_PI / 5.0);
+    }
+}
+
+void draw_star(gdImagePtr img, int x, int y, int size, int color, double rotation_angle) {
+    gdPoint points[10];
+
+    // 计算星形的五个外点和五个内点
+    double outer_radius = size / 2;
+    double inner_radius = size / 6;
+    double angle = M_PI / 5.0;
+
+    for (int i = 0; i &lt; 10; i++) {
+        double radius = (i % 2 == 0) ? outer_radius : inner_radius;
+        double theta = rotation_angle + i * angle;
+        points[i].x = x + radius * cos(theta);
+        points[i].y = y + radius * sin(theta);
+    }
+
+    // 使用 gdImageFilledPolygon 绘制星形
+    gdImageFilledPolygon(img, points, 10, color);
+}
+</pre>
+<p></p><h1>w8</h1>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+#include &lt;gd.h&gt;
+#include &lt;math.h&gt;
+ 
+void draw_japan_flag(gdImagePtr img);
+void draw_red_sun(gdImagePtr img, int x, int y, int size, int color);
+ 
+int main() {
+    int originalWidth = 1200;
+    int originalHeight = (int)(originalWidth * 2.0 / 3.0);
+    gdImagePtr img = gdImageCreateTrueColor(originalWidth, originalHeight);
+    gdImageAlphaBlending(img, 0);
+ 
+    draw_japan_flag(img);
+ 
+    // 新的宽度和高度以适应 "images" 文件夹
+    int newWidth = 600;
+    int newHeight = (int)(newWidth * 2.0 / 3.0);
+ 
+    // 创建新图像并进行缩放
+    gdImagePtr resizedImage = gdImageCreateTrueColor(newWidth, newHeight);
+    gdImageAlphaBlending(resizedImage, 0);
+    gdImageCopyResampled(resizedImage, img, 0, 0, 0, 0, newWidth, newHeight, originalWidth, originalHeight);
+ 
+  FILE *outputFile = fopen("./../images/japan_flag.png", "wb");
+    if (outputFile == NULL) {
+        fprintf(stderr, "Error opening the output file.\n");
+        return 1;
+    }
+    gdImagePng(resizedImage, outputFile);
+    fclose(outputFile);
+    gdImageDestroy(img);
+    gdImageDestroy(resizedImage);
+ 
+    return 0;
+}
+ 
+void draw_japan_flag(gdImagePtr img) {
+    int width = gdImageSX(img);
+    int height = gdImageSY(img);
+ 
+    // 创建一个白色背景
+    int white = gdImageColorAllocate(img, 255, 255, 255);
+    gdImageFilledRectangle(img, 0, 0, width - 1, height - 1, white);
+ 
+    // 绘制红色圆圈（太阳）
+    int red = gdImageColorAllocate(img, 255, 0, 0);
+    int center_x = width / 2;
+    int center_y = height / 2;
+    int radius = (int)((width * 2) / 3);
+    draw_red_sun(img, center_x, center_y, radius, red);
+}
+ 
+void draw_red_sun(gdImagePtr img, int x, int y, int size, int color) {
+  // 減小 size 的值,例如將他的值減半
+  size = size / 2;
+    gdImageArc(img, x, y, size, size, 0, 360, color);
+    gdImageFillToBorder(img, x, y, color, color);
+}</pre>
+<h6><img alt="" height="267" src="/images/japan_flag.png" width="400"/></h6>
+<h1>w9</h1>
 <h1>w10</h1>
-<h1>w11</h1><h1>w12</h1>
+<h1>w11</h1>
+<h1>w12</h1>
 <h1>w13</h1>
 <p>在這堂課中，對於剛進虎尾科大大一生的我相當有難度，這是我完全沒接觸過的領域。不僅僅是了解這些網頁、程式碼、指令如何運用，還有邏輯上頭腦要非常清楚，才能完全理解。目前遇到的難題是，不太懂運行這些程式的目的以及相關術語，有點跟不太上老師的腳步，希望老師可以放慢步調多解釋術語，學生不才，請老師多多包容，我是真心想要好好學習、順利通過這門課不想被當。</p>
 <p></p>

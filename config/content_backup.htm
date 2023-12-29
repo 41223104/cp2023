@@ -908,10 +908,7 @@ if (outputFile == NULL) {
       return 0;
   }</pre>
 <p><img alt="" height="267" src="/images/korea_flag.png" width="400"/></p><h1>w8</h1>
-<h4><span>進行九人一排分組, 期中成績預計送出個人期望成績</span></h4><h1>w9</h1>
-<h1>w10</h1>
-<h1>w11</h1>
-<h1>w12</h1>
+<h4><span>進行九人一排分組, 期中成績預計送出個人期望成績</span></h4><h1>w12</h1>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
 #include &lt;gd.h&gt;
 #include &lt;math.h&gt;
@@ -974,10 +971,93 @@ return 1;
     gdImageDestroy(img);
     return 0;
 }</pre>
-<p><img alt="" height="300" src="/images/hellogd.png" width="400"/></p><h1>w13</h1>
+<p><img alt="" height="300" src="/images/hellogd.png" width="400"/></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+#include &lt;gd.h&gt;
+#include &lt;math.h&gt;
+
+// Declare the rotation function
+void rotateFilledPolygon(int x_orig, int y_orig, double rotation_ang, gdPoint *points, int num_points) {
+    int i;
+    double angle_rad = rotation_ang * M_PI / 180.0;
+
+    for (i = 0; i &lt; num_points; i++) {
+        int x = points[i].x - x_orig;
+        int y = points[i].y - y_orig;
+
+        points[i].x = x_orig + (int)(x * cos(angle_rad) - y * sin(angle_rad));
+        points[i].y = y_orig + (int)(x * sin(angle_rad) + y * cos(angle_rad));
+    }
+}
+
+int main() {
+    int width = 800;
+    int height = 600;
+
+    gdImagePtr img = gdImageCreateTrueColor(width, height);
+    gdImageAlphaBlending(img, 0);
+
+    FILE *outputFile = fopen("./../images/hellogd2.png", "wb");
+    if (outputFile == NULL) {
+        fprintf(stderr, "Error opening the output file.\n");
+        return 1;
+    }
+
+    int red = gdImageColorAllocate(img, 255, 0, 0);
+    int blue = gdImageColorAllocate(img, 0, 0, 255);
+    int black = gdImageColorAllocate(img, 0, 0, 0);
+    int white = gdImageColorAllocate(img, 255, 255, 255);
+
+    gdImageFilledRectangle(img, 0, 0, width, height, white);
+    gdImageFilledRectangle(img, 0, 0, (int)width / 4, (int)height / 4, blue);
+
+    gdImageFilledEllipse(img, (int)width * 3 / 4, (int)height / 4, (int)width / 4, (int)width / 4, red);
+    gdImageEllipse(img, (int)width * 3 / 4, (int)height * 3 / 4, (int)width / 4, (int)width / 4, red);
+    gdImageLine(img, (int)width / 2, (int)height / 2, (int)width / 2, (int)height / 2 + 100, blue);
+
+    gdPoint points[4];
+    points[0].x = (int)width / 4;
+    points[0].y = (int)height * 3 / 4;
+    points[1].x = points[0].x + 100;
+    points[1].y = points[0].y;
+    points[2].x = points[1].x;
+    points[2].y = points[1].y + 100;
+    points[3].x = points[2].x - 100;
+    points[3].y = points[2].y;
+
+    // Call the rotation function multiple times
+    for (int i = 0; i &lt; 4; i++) {
+        rotateFilledPolygon((int)width / 4 + 50, (int)height * 3 / 4 + 50, 30.0, points, 4);
+        gdImagePolygon(img, points, 4, black);
+    }
+
+    gdPoint points2[4];
+    points2[0].x = (int)width / 3;
+    points2[0].y = (int)height / 2;
+    points2[1].x = points2[0].x + 100;
+    points2[1].y = points2[0].y;
+    points2[2].x = points2[1].x;
+    points2[2].y = points2[1].y + 100;
+    points2[3].x = points2[2].x - 150;
+    points2[3].y = points2[2].y;
+
+    // Call the rotation function multiple times
+    for (int i = 0; i &lt; 12; i++) {
+        //rotateFilledPolygon((int)width / 3 + 50, (int)height / 2 + 50, 30.0, points2, 4);
+        rotateFilledPolygon(500, 200, 30.0, points2, 4);
+        gdImageFilledPolygon(img, points2, 4, red);
+    }
+
+    gdImagePngEx(img, outputFile, 9);
+    fclose(outputFile);
+    gdImageDestroy(img);
+
+    return 0;
+}
+</pre>
+<p><img alt="" height="300" src="/images/hellogd2.png" width="400"/></p><h1>w13</h1>
 <p>在這堂課中，對於剛進虎尾科大大一生的我相當有難度，這是我完全沒接觸過的領域。不僅僅是了解這些網頁、程式碼、指令如何運用，還有邏輯上頭腦要非常清楚，才能完全理解。目前遇到的難題是，不太懂運行這些程式的目的以及相關術語，有點跟不太上老師的腳步，希望老師可以放慢步調多解釋術語，學生不才，請老師多多包容，我是真心想要好好學習、順利通過這門課不想被當。</p>
-<p></p>
-<h1>Brython</h1>
+<h1>MSD</h1><h1>Brython</h1>
 <p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">https://en.wikipedia.org/wiki/Python_(programming_language)</a></p>
 <h4>Examples:</h4>
 <p style="padding-left: 30px;"><a href="https://gist.github.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d">https://gist.github.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d</a></p>

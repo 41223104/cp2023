@@ -908,71 +908,73 @@ if (outputFile == NULL) {
       return 0;
   }</pre>
 <p><img alt="" height="267" src="/images/korea_flag.png" width="400"/></p><h1>w8</h1>
-<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
-#include &lt;gd.h&gt;
-#include &lt;math.h&gt;
- 
-void draw_japan_flag(gdImagePtr img);
-void draw_red_sun(gdImagePtr img, int x, int y, int size, int color);
- 
-int main() {
-    int originalWidth = 1200;
-    int originalHeight = (int)(originalWidth * 2.0 / 3.0);
-    gdImagePtr img = gdImageCreateTrueColor(originalWidth, originalHeight);
-    gdImageAlphaBlending(img, 0);
- 
-    draw_japan_flag(img);
- 
-    // 新的宽度和高度以适应 "images" 文件夹
-    int newWidth = 600;
-    int newHeight = (int)(newWidth * 2.0 / 3.0);
- 
-    // 创建新图像并进行缩放
-    gdImagePtr resizedImage = gdImageCreateTrueColor(newWidth, newHeight);
-    gdImageAlphaBlending(resizedImage, 0);
-    gdImageCopyResampled(resizedImage, img, 0, 0, 0, 0, newWidth, newHeight, originalWidth, originalHeight);
- 
-  FILE *outputFile = fopen("./../images/japan_flag.png", "wb");
-    if (outputFile == NULL) {
-        fprintf(stderr, "Error opening the output file.\n");
-        return 1;
-    }
-    gdImagePng(resizedImage, outputFile);
-    fclose(outputFile);
-    gdImageDestroy(img);
-    gdImageDestroy(resizedImage);
- 
-    return 0;
-}
- 
-void draw_japan_flag(gdImagePtr img) {
-    int width = gdImageSX(img);
-    int height = gdImageSY(img);
- 
-    // 创建一个白色背景
-    int white = gdImageColorAllocate(img, 255, 255, 255);
-    gdImageFilledRectangle(img, 0, 0, width - 1, height - 1, white);
- 
-    // 绘制红色圆圈（太阳）
-    int red = gdImageColorAllocate(img, 255, 0, 0);
-    int center_x = width / 2;
-    int center_y = height / 2;
-    int radius = (int)((width * 2) / 3);
-    draw_red_sun(img, center_x, center_y, radius, red);
-}
- 
-void draw_red_sun(gdImagePtr img, int x, int y, int size, int color) {
-  // 減小 size 的值,例如將他的值減半
-  size = size / 2;
-    gdImageArc(img, x, y, size, size, 0, 360, color);
-    gdImageFillToBorder(img, x, y, color, color);
-}</pre>
-<h6><img alt="" height="267" src="/images/japan_flag.png" width="400"/></h6>
-<h1>w9</h1>
+<h4><span>進行九人一排分組, 期中成績預計送出個人期望成績</span></h4><h1>w9</h1>
 <h1>w10</h1>
 <h1>w11</h1>
 <h1>w12</h1>
-<h1>w13</h1>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+#include &lt;gd.h&gt;
+#include &lt;math.h&gt;
+
+int main() {
+    int width = 800;
+    int height = 600;
+
+    gdImagePtr img = gdImageCreateTrueColor(width, height);
+    gdImageAlphaBlending(img, 0);
+
+    FILE *outputFile = fopen("hellogd.png", "wb");
+    if (outputFile == NULL) {
+
+fprintf(stderr, "Error opening the output file.\n");
+
+return 1;
+    }
+
+    int red = gdImageColorAllocate(img, 255, 0, 0);
+    int blue = gdImageColorAllocate(img, 0, 0, 255);
+    int black = gdImageColorAllocate(img, 0, 0, 0);
+    int white = gdImageColorAllocate(img, 255, 255, 255);
+    // 長方形塗色
+    gdImageFilledRectangle(img, 0, 0, width, height, white);
+    gdImageFilledRectangle(img, 0, 0, (int)width/4, (int)height/4, blue);
+    // 橢圓形塗色
+    gdImageFilledEllipse(img, (int)width*3/4, (int)height/4, (int)width/4, (int)width/4, red);
+    // 橢圓形畫線
+    gdImageEllipse(img, (int)width*3/4, (int)height*3/4, (int)width/4, (int)width/4, red);
+    // 畫直線
+    gdImageLine(img, (int)width/2, (int)height/2, (int)width/2, (int)height/2 + 100, blue);
+
+    // 多邊形畫線
+    gdPoint points[4];
+    points[0].x = (int)width/4;
+    points[0].y = (int)height*3/4;
+    points[1].x = points[0].x + 100;
+    points[1].y = points[0].y;
+    points[2].x = points[1].x;
+    points[2].y = points[1].y + 100;
+    points[3].x = points[2].x - 100;
+    points[3].y = points[2].y;
+    gdImagePolygon(img, points, 4, black);
+
+    // 多邊形塗色
+    gdPoint points2[4];
+    points2[0].x = (int)width/3;
+    points2[0].y = (int)height/2;
+    points2[1].x = points2[0].x + 100;
+    points2[1].y = points2[0].y;
+    points2[2].x = points2[1].x;
+    points2[2].y = points2[1].y + 100;
+    points2[3].x = points2[2].x - 150;
+    points2[3].y = points2[2].y;
+    gdImageFilledPolygon(img, points2, 4, red);
+
+    gdImagePngEx(img, outputFile, 9);
+    fclose(outputFile);
+    gdImageDestroy(img);
+    return 0;
+}</pre>
+<p></p><h1>w13</h1>
 <p>在這堂課中，對於剛進虎尾科大大一生的我相當有難度，這是我完全沒接觸過的領域。不僅僅是了解這些網頁、程式碼、指令如何運用，還有邏輯上頭腦要非常清楚，才能完全理解。目前遇到的難題是，不太懂運行這些程式的目的以及相關術語，有點跟不太上老師的腳步，希望老師可以放慢步調多解釋術語，學生不才，請老師多多包容，我是真心想要好好學習、順利通過這門課不想被當。</p>
 <p></p>
 <h1>Brython</h1>

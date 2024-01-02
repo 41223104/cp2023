@@ -131,7 +131,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li class='has-children'><a href='作業區.html'>作業區</a><ul class='dropdown'><li><a href='w1~4.html'>w1~4</a><li><a href='w5.html'>w5</a><li class='has-children'><a href='w6.html'>w6</a><ul class='dropdown'><li><a href='ROC.html'>ROC</a><li><a href='USA.html'>USA</a></li></ul><li class='has-children'><a href='w7.html'>w7</a><ul class='dropdown'><li><a href='Laos.html'>Laos</a><li><a href='Japan.html'>Japan</a><li><a href='PROC.html'>PROC</a><li><a href='UK.html'>UK</a><li><a href='South Korea.html'>South Korea</a><li><a href='Vietnam.html'>Vietnam</a><li><a href='Bangladesh.html'>Bangladesh</a><li><a href='Italian.html'>Italian</a></li></ul><li><a href='w8.html'>w8</a><li><a href='w9.html'>w9</a><li><a href='w10~w11.html'>w10~w11</a><li><a href='w12.html'>w12</a><li><a href='w13.html'>w13</a></li></ul><li class='has-children'><a href='note.html'>note</a><ul class='dropdown'><li><a href='ssh.html'>ssh</a><li><a href='puttygen.html'>puttygen</a></li></ul><li><a href='MSD.html'>MSD</a><li class='has-children'><a href='ANSIC.html'>ANSIC</a><ul class='dropdown'><li><a href='1.C.html'>1.C</a><li><a href='2.C.html'>2.C</a><li><a href='3.C.html'>3.C</a><li><a href='4.C.html'>4.C</a><li><a href='5.C.html'>5.C</a><li><a href='6.C.html'>6.C</a><li><a href='7.C.html'>7.C</a><li><a href='8.C.html'>8.C</a><li><a href='9.C.html'>9.C</a><li><a href='10.C.html'>10.C</a></li></ul><li><a href='Brython.html'>Brython</a></li>
+                     <li><a href='About.html'>About</a><li class='has-children'><a href='作業區.html'>作業區</a><ul class='dropdown'><li><a href='w1~4.html'>w1~4</a><li><a href='w5.html'>w5</a><li class='has-children'><a href='w6.html'>w6</a><ul class='dropdown'><li><a href='ROC.html'>ROC</a><li><a href='USA.html'>USA</a></li></ul><li class='has-children'><a href='w7.html'>w7</a><ul class='dropdown'><li><a href='Laos.html'>Laos</a><li><a href='Japan.html'>Japan</a><li><a href='PROC.html'>PROC</a><li><a href='UK.html'>UK</a><li><a href='South Korea.html'>South Korea</a><li><a href='Vietnam.html'>Vietnam</a><li><a href='Bangladesh.html'>Bangladesh</a><li><a href='Italian.html'>Italian</a></li></ul><li><a href='w8.html'>w8</a><li><a href='w9.html'>w9</a><li><a href='w10~w11.html'>w10~w11</a><li><a href='w12.html'>w12</a><li><a href='w13.html'>w13</a></li></ul><li class='has-children'><a href='note.html'>note</a><ul class='dropdown'><li><a href='ssh.html'>ssh</a><li><a href='puttygen.html'>puttygen</a></li></ul><li><a href='MSD.html'>MSD</a><li class='has-children'><a href='ANSIC.html'>ANSIC</a><ul class='dropdown'><li><a href='1.C 顯示自己的名字、出生年月以及電話號碼.html'>1.C 顯示自己的名字、出生年月以及電話號碼</a><li><a href='2.C 顯示編譯器支持標準.html'>2.C 顯示編譯器支持標準</a><li><a href='3.C 列出"A"字圖形.html'>3.C 列出"A"字圖形</a><li><a href='4.C 排列原始符號順序以及反轉.html'>4.C 排列原始符號順序以及反轉</a><li><a href='6.C.html'>6.C</a><li><a href='7.C.html'>7.C</a><li><a href='8.C.html'>8.C</a><li><a href='9.C.html'>9.C</a><li><a href='10.C.html'>10.C</a></li></ul><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -142,25 +142,29 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">3.C << <a href='3.C.html'>Previous</a> <a href='5.C.html'>Next</a> >> 5.C<br /><h1>4.C</h1>
-<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+    <div id="tipue_search_content">2.C 顯示編譯器支持標準 << <a href='2.C 顯示編譯器支持標準.html'>Previous</a> <a href='4.C 排列原始符號順序以及反轉.html'>Next</a> >> 4.C 排列原始符號順序以及反轉<br /><h1>3.C 列出"A"字圖形</h1>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">//#include &lt;stdio.h&gt;將sidio.h的檔案內容加進來
+//int main()
+//{}表示一個區塊的開始和結束
+//printf()把框框內的文字列印到螢幕上
+//;分號代表句子的結束
+//\n表示換行
+//return(0);回傳0這個值
+#include &lt;stdio.h&gt;
+int main(){
+printf("          ######\n");
+printf("        ##      ##\n");
+printf("       ##        ##\n");
+printf("      ##          ##\n");
+printf("     ################\n");
+printf("    ##              ##\n");
+printf("   ##                ##\n");
+printf("  ##                  ##\n");
  
-int main() 
-{
-    // Declare and initialize character variables
-    char char1 = 'X';
-    char char2 = 'M';
-    char char3 = 'L';
- 
-    // Print the original and reversed characters
-    printf("The reverse of %c%c%c is %c%c%c\n",
-        char1, char2, char3,
-        char3, char2, char1);
- 
-    return(0);
+return(0);
 }</pre>
-<p><img alt="" height="82" src="./../images/4.c.png" width="351"/></p>
-<br />3.C << <a href='3.C.html'>Previous</a> <a href='5.C.html'>Next</a> >> 5.C</div>
+<p><img alt="" height="226" src="./../images/3.C.png" width="342"/></p>
+<br />2.C 顯示編譯器支持標準 << <a href='2.C 顯示編譯器支持標準.html'>Previous</a> <a href='4.C 排列原始符號順序以及反轉.html'>Next</a> >> 4.C 排列原始符號順序以及反轉</div>
         
     <!-- footer -->
       <div class="container">

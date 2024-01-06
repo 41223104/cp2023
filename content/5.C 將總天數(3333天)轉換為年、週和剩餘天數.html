@@ -142,20 +142,28 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">9.C 排出在1~199中的質數 << <a href='9.C 排出在1~199中的質數.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython<br /><h1>10.C  i從0，j從10開始的遞增循環</h1>
+    <div id="tipue_search_content">4.C 排列原始符號順序以及反轉 << <a href='4.C 排列原始符號順序以及反轉.html'>Previous</a> <a href='6.C 計算圓的周長和面積.html'>Next</a> >> 6.C 計算圓的周長和面積<br /><h1>5.C 將總天數(3333天)轉換為年、週和剩餘天數</h1>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
-void main()
+ 
+int main()
 {
-int i, j;
-for ( i = 0, j = 10; i &lt; 6; i++, j++ )
-{
-printf( "i = %d, ", i );
-printf( "j = %d \n", j );
-}
-}
-</pre>
-<p><img alt="" height="191" src="./../images/10.C.png" width="291"/></p>
-<br />9.C 排出在1~199中的質數 << <a href='9.C 排出在1~199中的質數.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython</div>
+    int days, years, weeks;
+ 
+    days = 3333; // Total number of days
+ 
+    // Converts days to years, weeks and days
+    years = days/365; // Calculate years
+    weeks = (days % 365)/7; // Calculate weeks
+    days = days - ((years*365) + (weeks*7)); // Calculate remaining days
+ 
+    // Print the results
+    printf("Years: %d\n", years);
+    printf("Weeks: %d\n", weeks);
+    printf("Days: %d \n", days);
+ 
+    return 0;
+}</pre>
+<p><img alt="" height="125" src="./../images/5.c.png" width="330"/></p><br />4.C 排列原始符號順序以及反轉 << <a href='4.C 排列原始符號順序以及反轉.html'>Previous</a> <a href='6.C 計算圓的周長和面積.html'>Next</a> >> 6.C 計算圓的周長和面積</div>
         
     <!-- footer -->
       <div class="container">
